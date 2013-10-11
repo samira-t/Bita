@@ -1,8 +1,8 @@
-/**
- *  Copyright (C) 2011 Typesafe, Inc <http://typesafe.com>
- */
-
 package bita
+
+/**
+ * @author Samira Tasharofi (tasharo1@illinois.edu)
+ */
 
 import sbt._
 import sbt.Keys._

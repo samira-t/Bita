@@ -96,6 +96,7 @@ object PMHRCriterion extends Criterion {
    * r'->r that satisfy PMHR are covered by traces.
    */
   def measureCoverage(traceFiles: Array[String], resultFile: String = null, detailInterval: Int = -1): Int = {
+    println("measuring coverage for %s.... ".format(name))
     var start = System.currentTimeMillis()
 
     var writer = Writer(resultFile)

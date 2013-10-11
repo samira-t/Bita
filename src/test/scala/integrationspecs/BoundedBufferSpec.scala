@@ -25,14 +25,14 @@ class BufferSpec extends TestHelper with FlatSpec {
   val name = "buffer"
   val criteria = Array[Criterion]( PCRCriterion, PRCriterion)
 
-  val bufferCapacity = 5
-  val putMsgNum = 5
+  val bufferCapacity = 3
+  val putMsgNum = 2
   val getMsgNum = 0
 
   var allTracesDir = "test-results/buffer/%s-%s-%s/".format(bufferCapacity, putMsgNum, getMsgNum)
   var generatedSchedulesNum = -1
 
-  // Test the bounded buffer example with various criteria and optimizations.
+  // Test the bounded buffer example with all criteria and optimizations.
   "Different optimizations" should "be tested for buffer" in {
 
     var randomTraceDir = allTracesDir + "random-new/"
@@ -50,6 +50,8 @@ class BufferSpec extends TestHelper with FlatSpec {
         
         // Measure the coverage and output the results into resultFile.
         var resultFile = scheduleDir + "schedule%s-result.txt".format(opt)
+        // Must consider the first random trace for measuring the coverage.
+        FileHelper.copyFiles(randomTrace,scheduleDir)
         var traceFiles = FileHelper.getFiles(scheduleDir, (name => name.contains("-trace.txt")))
         generatedSchedulesNum = traceFiles.length
         criterion.measureCoverage(traceFiles, resultFile)
